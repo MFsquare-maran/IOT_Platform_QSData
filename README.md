@@ -52,68 +52,68 @@ Follow the official guide to install Ubuntu on Windows Subsystem for Linux (WSL)
 ### 2. Install Required Software in Ubuntu WSL
 
 #### Update Package List
-\```bash
+```
 sudo apt-get update
-\```
+```
 
 ### 3. Install Maven
-\```bash
+```
 sudo apt-get install maven
-\```
+```
 
 ### 4. Install Docker
 
-\```bash
+```bash
 sudo apt-get update
 sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
-\```
+```
 
 - Set up Docker’s official GPG key and repository:
-  \```bash
+  ```bash
   sudo mkdir -p /etc/apt/keyrings
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-  \```
+  ```
 
 - Add Docker repository to your APT sources list:
-  \```bash
+  ```
   echo \
     "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
     $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-  \```
+  ```
 
 - Install Docker components:
-  \```bash
+  ```bash
   sudo apt-get update
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-  \```
+  ```
 
 - Add your user to the `docker` group (you may need to restart your terminal for this to take effect):
-  \```bash
+  ```bash
   sudo groupadd docker
   sudo usermod -aG docker $USER
-  \```
+  ```
 
 ### 5. Install Java JDK 17
 
-\```bash
+```
 sudo apt update
 sudo apt install openjdk-17-jdk
-\```
+```
 
 - Set up the JAVA environment variables:
-  \```bash
+  ```
   export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
   export PATH=$JAVA_HOME/bin:$PATH
-  \```
+  ```
 
 - Verify installation:
-  \```bash
+  ```bash
   mvn -version
-  \```
+  ```
 
 ## Compile ThingsBoard
 
