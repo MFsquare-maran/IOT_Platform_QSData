@@ -118,19 +118,19 @@ sudo apt install openjdk-17-jdk
 ## Compile ThingsBoard
 
 1. Clone the ThingsBoard repository:
-   \```bash
+   ```
    git clone https://github.com/MFsquare-maran/IOT_Platform_QSData.git
-   \```
+   ```
 
 2. Navigate to your local ThingsBoard folder:
-   \```bash
+   ```
    cd /mnt/c/Users/maran/Desktop/QSData_Thingsboard/thingsboard
-   \```
+   ```
 
 3. Build the project:
-   \```bash
+   ```
    mvn clean install -DskipTests -Ddockerfile.skip=false
-   \```
+   ```
 
 ---
 
