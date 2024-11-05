@@ -39,3 +39,68 @@ Collect and Visualize your IoT data in minutes by following this [guide](https:/
 ## Licenses
 
 This project is released under [Apache 2.0 License](./LICENSE).
+
+
+## Compile by yourself
+
+
+Vorbereitungen:
+
+Install Ubuntu WSL (in CMD)###################################################
+
+
+https://learn.microsoft.com/en-us/windows/wsl/install
+
+
+```bash
+
+
+
+In Ubuntu CMD
+
+Install maven########################################################
+
+- sudo apt-get update
+- sudo apt-get install Maven
+
+Install Docker#######################################################
+
+- sudo apt-get update
+- sudo apt-get install -y \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+
+- sudo mkdir -p /etc/apt/keyrings curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+- echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+
+- sudo apt-get update
+- sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+- sudo groupadd docker
+- sudo usermod -aG docker $USER
+
+
+
+Install JAVA JDK 17 #################################################
+
+- sudo apt update
+- sudo apt install openjdk-17-jdk
+
+- export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export PATH=$JAVA_HOME/bin:$PATH
+mvn -version
+
+
+
+Compile Thingsboard #################################################
+
+git clone https://github.com/thingsboard/thingsboard.git
+
+cd /mnt/c/Users/maran/Desktop/QSData_Thingsboard/thingsboard    (go to thingsboard folder)
+
+mvn clean install -DskipTests -Ddockerfile.skip=false
