@@ -40,67 +40,100 @@ Collect and Visualize your IoT data in minutes by following this [guide](https:/
 
 This project is released under [Apache 2.0 License](./LICENSE).
 
+# ThingsBoard Setup on Ubuntu WSL
 
-## Compile by yourself
+## Prerequisites
 
+### 1. Install Ubuntu WSL
 
-Vorbereitungen:
+Follow the official guide to install Ubuntu on Windows Subsystem for Linux (WSL):
+- [Microsoft Documentation for WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-Install Ubuntu WSL (in CMD)###################################################
+### 2. Install Required Software in Ubuntu WSL
 
+#### Update Package List
+\```bash
+sudo apt-get update
+\```
 
-https://learn.microsoft.com/en-us/windows/wsl/install
+### 3. Install Maven
+\```bash
+sudo apt-get install maven
+\```
 
+### 4. Install Docker
 
-```bash
-
-
-
-In Ubuntu CMD
-
-Install maven########################################################
-
-- sudo apt-get update
-- sudo apt-get install Maven
-
-Install Docker#######################################################
-
-- sudo apt-get update
-- sudo apt-get install -y \
+\```bash
+sudo apt-get update
+sudo apt-get install -y \
     ca-certificates \
     curl \
     gnupg \
     lsb-release
+\```
 
-- sudo mkdir -p /etc/apt/keyrings curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+- Set up Docker’s official GPG key and repository:
+  \```bash
+  sudo mkdir -p /etc/apt/keyrings
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  \```
 
-- echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+- Add Docker repository to your APT sources list:
+  \```bash
+  echo \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  \```
+
+- Install Docker components:
+  \```bash
+  sudo apt-get update
+  sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+  \```
+
+- Add your user to the `docker` group (you may need to restart your terminal for this to take effect):
+  \```bash
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+  \```
+
+### 5. Install Java JDK 17
+
+\```bash
+sudo apt update
+sudo apt install openjdk-17-jdk
+\```
+
+- Set up the JAVA environment variables:
+  \```bash
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+  export PATH=$JAVA_HOME/bin:$PATH
+  \```
+
+- Verify installation:
+  \```bash
+  mvn -version
+  \```
+
+## Compile ThingsBoard
+
+1. Clone the ThingsBoard repository:
+   \```bash
+   git clone https://github.com/MFsquare-maran/IOT_Platform_QSData.git
+   \```
+
+2. Navigate to your local ThingsBoard folder:
+   \```bash
+   cd /mnt/c/Users/maran/Desktop/QSData_Thingsboard/thingsboard
+   \```
+
+3. Build the project:
+   \```bash
+   mvn clean install -DskipTests -Ddockerfile.skip=false
+   \```
+
+---
+
+This README file provides a step-by-step guide for setting up ThingsBoard on Ubuntu WSL.
 
 
-- sudo apt-get update
-- sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-- sudo groupadd docker
-- sudo usermod -aG docker $USER
-
-
-
-Install JAVA JDK 17 #################################################
-
-- sudo apt update
-- sudo apt install openjdk-17-jdk
-
-- export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-export PATH=$JAVA_HOME/bin:$PATH
-mvn -version
-
-
-
-Compile Thingsboard #################################################
-
-git clone https://github.com/thingsboard/thingsboard.git
-
-cd /mnt/c/Users/maran/Desktop/QSData_Thingsboard/thingsboard    (go to thingsboard folder)
-
-mvn clean install -DskipTests -Ddockerfile.skip=false
