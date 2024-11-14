@@ -124,7 +124,7 @@ sudo apt install openjdk-17-jdk
 
 2. Navigate to your local ThingsBoard folder:
    ```
-   cd /mnt/c/Users/maran/Desktop/QSData_Thingsboard/thingsboard
+   cd /mnt/.../IOT_Platform_QSData
    ```
 
 3. Build the project:
