@@ -119,6 +119,8 @@ sudo apt install openjdk-17-jdk
 
 1. Clone the ThingsBoard repository:
    ```
+   git config --global core.autocrlf input
+
    git clone https://github.com/MFsquare-maran/IOT_Platform_QSData.git
    ```
 
