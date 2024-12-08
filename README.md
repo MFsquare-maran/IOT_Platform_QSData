@@ -122,6 +122,11 @@ sudo apt install openjdk-17-jdk
    git config --global core.autocrlf input
 
    git clone https://github.com/MFsquare-maran/IOT_Platform_QSData.git
+
+
+   
+   git clone -b release-3.6 https://github.com/thingsboard/thingsboard.git --depth 1
+   
    ```
 
 2. Navigate to your local ThingsBoard folder:
