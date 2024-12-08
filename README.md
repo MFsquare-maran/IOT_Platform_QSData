@@ -131,7 +131,7 @@ sudo apt install openjdk-17-jdk
 
 3. Build the project:
    ```
-   mvn clean install -DskipTests -Ddockerfile.skip=false
+   sudo mvn clean install -DskipTests -Ddockerfile.skip=false
    ```
 
 ---
